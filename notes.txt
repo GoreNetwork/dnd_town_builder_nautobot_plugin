@@ -1,0 +1,14 @@
+build setup.py file
+    from setuptools import find_packages, setup
+    setup(
+        name='maintenance-notices',
+        version='0.1',
+        description='A Nautobot plugin for tracking maintenance notices',
+        author='Student Name',
+        packages=find_packages(),
+        include_package_data=True,
+    )
+
+Tell Nautobot to build out the basics (folder structure etc) of the plugin with nautobot-server startplugin <NEW_PLUGIN_NAME>
+
+Install app: python setup.py develop
