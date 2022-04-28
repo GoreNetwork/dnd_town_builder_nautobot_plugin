@@ -21,3 +21,21 @@ menu_items = (
     )
 )
 """
+add_maintenancenotice_button = PluginMenuButton(
+    link='plugins:maintenance_notices:maintenancenotice_add',
+    title='Add a new maintenance notice',
+    icon_class='mdi mdi-plus-thick',
+    color=ButtonColorChoices.GREEN,
+    # This would limit who can see the buttion to if they have access
+    # permissions=['maintenance_notices.add_maintenancenotice'],
+)
+
+menu_items = (
+    PluginMenuItem(
+        link='plugins:maintenance_notices:maintenancenotice_list', #Refrences urls.py "name" in the url
+        link_text='Maintenance Notices',
+        buttons=[add_maintenancenotice_button],
+        #This would hide the Maintenance Noticication plugin if they didn't have access to it.
+        # permissions=['maintenance_notices.view_maintenancenotice'],
+    ),
+)

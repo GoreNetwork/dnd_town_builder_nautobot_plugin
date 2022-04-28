@@ -17,14 +17,20 @@ class MaintenanceNoticeView(generic.ObjectView):
     queryset = models.MaintenanceNotice.objects.all()
 
 
-class MaintenanceNoticeCreateView(generic.ObjectEditView):
-    """Create view."""
+class MaintenanceNoticeEditView(generic.ObjectEditView):
+    """Edit view."""
 
     model = models.MaintenanceNotice
     queryset = models.MaintenanceNotice.objects.all()
     model_form = forms.MaintenanceNoticeForm
 
+class MaintenanceNoticeCreateView(MaintenanceNoticeEditView):
+    """Create view."""
 
+    def alter_obj(self, obj, request, *args, **kwargs):
+        """Insert user into object."""
+        obj.created_by = request.user
+        return obj
 class MaintenanceNoticeDeleteView(generic.ObjectDeleteView):
     """Delete view."""
 

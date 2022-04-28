@@ -1,5 +1,7 @@
 Instead of restarting services we can touch a file it monitors, making new files it doesn't monitor does nothing
     touch /opt/nautobot/plugin/maintenance_notices/models.py
+Change users in nautobot's passwords with
+    nautobot-server changepassword user1    
 
 Build the plugin:
 

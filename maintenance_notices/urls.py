@@ -9,5 +9,5 @@ urlpatterns = [
     path("maintenancenotice/add/", views.MaintenanceNoticeCreateView.as_view(), name="maintenancenotice_add"),
     path("maintenancenotice/<uuid:pk>/", views.MaintenanceNoticeView.as_view(), name="maintenancenotice"),
     path("maintenancenotice/<uuid:pk>/delete/", views.MaintenanceNoticeDeleteView.as_view(), name="maintenancenotice_delete"),
-    path("maintenancenotice/<uuid:pk>/edit/", views.MaintenanceNoticeCreateView.as_view(), name="maintenancenotice_edit"),
+    path("maintenancenotice/<uuid:pk>/edit/", views.MaintenanceNoticeEditView.as_view(), name="maintenancenotice_edit"),
 ]
