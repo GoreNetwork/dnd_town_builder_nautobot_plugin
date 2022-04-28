@@ -37,7 +37,7 @@ class MaintenanceNotice(BaseModel):
     def get_absolute_url(self):
 
         """Return absolute URL for instance."""
-        return reverse("plugins:maintenance_notice:maintenancenotice", args=[self.pk])
+        return reverse("plugins:maintenance_notices:maintenancenotice", args=[self.pk])
 
     def save(self, *args, **kwargs):
         #Overide built in save to figure out the end_time columb (the uneditable one)

@@ -77,3 +77,25 @@ Extend the UI to the plugin
             list_display = ('start_time', 'end_time', 'created_by')
 
     In the GUI go into admin and look for maintenance notices and hit the add buttion
+    This should take you to a website to add things to the table
+
+Adding views/templates
+    make tables.py and forms.py in the same folder as the models.py
+    we need a super basic forms for now
+        """Forms for maintenance_notices."""
+        from django import forms
+        from nautobot.utilities.forms import (
+            BootstrapMixin,
+        )
+
+        from maintenance_notices import models
+
+        class MaintenanceNoticeForm(BootstrapMixin, forms.ModelForm):
+            """MaintenanceNotice creation/edit form."""
+
+            class Meta:
+                """Meta attributes."""
+
+                model = models.MaintenanceNotice
+                fields = ("__all__")
+    
