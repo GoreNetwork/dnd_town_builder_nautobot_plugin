@@ -44,4 +44,4 @@ menu_items = (
         # permissions=['maintenance_notices.view_maintenancenotice'],
         buttons=[add_maintenancenotice_button],
     ),
-)
+) 

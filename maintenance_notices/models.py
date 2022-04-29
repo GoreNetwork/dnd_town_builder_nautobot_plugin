@@ -42,4 +42,4 @@ class MaintenanceNotice(BaseModel):
     def save(self, *args, **kwargs):
         #Overide built in save to figure out the end_time columb (the uneditable one)
         self.end_time = self.start_time + timedelta(minutes=self.duration)
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs) 
