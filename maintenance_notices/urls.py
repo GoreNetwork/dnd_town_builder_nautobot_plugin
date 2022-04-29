@@ -10,4 +10,6 @@ urlpatterns = [
     path("maintenancenotice/<uuid:pk>/", views.MaintenanceNoticeView.as_view(), name="maintenancenotice"),
     path("maintenancenotice/<uuid:pk>/delete/", views.MaintenanceNoticeDeleteView.as_view(), name="maintenancenotice_delete"),
     path("maintenancenotice/<uuid:pk>/edit/", views.MaintenanceNoticeEditView.as_view(), name="maintenancenotice_edit"),
+    path('maintenancenotice/active/', views.ActiveMaintenanceNoticeListView.as_view(), name='maintenancenotice_active_list'),
+
 ]

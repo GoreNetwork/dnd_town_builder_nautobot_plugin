@@ -19,7 +19,10 @@ class MaintenanceNoticesConfig(PluginConfig):
     required_settings = []  # A list of any configuration parameters that must be defined by the user.
     min_version = "1.0.0"  # Minimum version of Nautobot with which the plugin is compatible.
     max_version = "1.999"  # Maximum version of Nautobot with which the plugin is compatible.
-    default_settings = {}  # A dictionary of configuration parameters and their default values.
+    
+    #This is refrenced in views.py to set the default duration with the SETTINGS.get
+    #However it's being overridden by the PLUGINS_CONFIG in nautobot_config.py
+    default_settings = {"default_duration": 120,}  # A dictionary of configuration parameters and their default values.
     caching_config = {}  # Plugin-specific cache configuration.
     version = __version__
     description='A scrap work plugin to learn stuff'
