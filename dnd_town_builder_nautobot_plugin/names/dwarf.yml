@@ -1,0 +1,90 @@
+---
+first:
+  male:
+    - Leon
+    - Lukas
+    - Tobias
+    - Ernst
+    - Friedrich
+    - Hans
+    - Heinrich
+    - Hermann
+    - Karl
+    - Otto
+    - Paul
+    - Walter
+    - Wilhelm
+    - Gerhard
+    - Günter
+    - Hans
+    - Heinz
+    - Finn
+    - Jan
+    - Jannik
+    - Jonas
+    - Leon
+    - Luca
+    - Lukas
+    - Niklas
+    - Tim
+    - Tom
+
+  female:
+    - Olga
+    - Anna
+    - Bertha
+    - Elisabeth
+    - Emma
+    - Frieda
+    - Gertrud
+    - Margarethe
+    - Maria
+    - Marie
+    - Martha
+    - Edith
+    - Elfriede
+    - Erna
+    - Gerda
+    - Gertrud
+    - Hildegard
+    - Ilse
+    - Irmgard
+    - Lieselotte
+    - Ursula
+    - Andrea
+    - Angelika    
+    
+last:
+  adgitive:
+    - Grim
+    - Wild
+    - Great
+    - Forge
+    - Bright
+    - War
+    - Frost
+    - Noble 
+    - Black
+    - Blood
+    - Steel
+    - Bronze
+    - Steel
+  noun:
+    - brew
+    - hammer
+    - rock
+    - branch
+    - axe
+    - bow
+    - stone
+    - pike
+    - ember
+    - bone
+    - miner
+    - breaker
+    - jaw
+    - fury
+    - mountain
+
+
+
