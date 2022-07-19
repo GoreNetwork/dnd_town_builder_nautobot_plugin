@@ -6,4 +6,5 @@ from dnd_town_builder_nautobot_plugin import views
 
 urlpatterns = [
     # path('random/', views.RandomAnimalView.as_view(), name='random_animal'),
+    path("build_city", views.build_city, name = "build-city"),
 ]

@@ -67,29 +67,23 @@ class ImportdataIntoDatabase(Job):
                     else:
                         self.log_info( f"Already Exists: {name}, {race}, {name_part}")
             if "adgitive" in file_data['last']:
-                for name_part in file_data['last']:
-                    table_update, created = CharName.objects.get_or_create(
-                        race=race,
-                        name_part=name_part,
-                        name = name,
-                        sex = "None")
-                    if created:
-                        self.log_success( f"Added: {name}, {race}, {name_part}")
-                    else:
-                        self.log_info( f"Already Exists: {name}, {race}, {name_part}")
-            else:
-                for name in file_data['last']:
-                    name_part="last"
-                    table_update, created = CharName.objects.get_or_create(
-                        race=race,
-                        name_part=name_part,
-                        name = name,
-                        sex = "None"
-                    )
-                    if created:
-                        self.log_success( f"Name Added: {name}, {race}, {name_part}")
-                    else:
-                        self.log_info( f"Name Already Exists: {name}, {race}, {name_part}")
+                tmp_last = []
+                for noun in file_data['last']['noun']:
+                    for adgitive in file_data['last']['adgitive']:
+                        tmp_last.append(f"{adgitive}{noun}")
+                file_data['last']=tmp_last
+            for name in file_data['last']:
+                name_part="last"
+                table_update, created = CharName.objects.get_or_create(
+                    race=race,
+                    name_part=name_part,
+                    name = name,
+                    sex = "None"
+                )
+                if created:
+                    self.log_success( f"Name Added: {name}, {race}, {name_part}")
+                else:
+                    self.log_info( f"Name Already Exists: {name}, {race}, {name_part}")
 
     def build_items_for_sale(self):
         store_types = ['combat_store',
