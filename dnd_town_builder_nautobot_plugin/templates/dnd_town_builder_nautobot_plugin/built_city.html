@@ -1,0 +1,147 @@
+{% extends 'base.html' %} 
+{% load buttons %}
+{% load static %}
+{% load custom_links %} 
+{% load helpers %}
+{% load plugins %} 
+
+{% block content %}
+
+
+
+<style>
+    /* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: rgb(0, 0, 0);
+  color: rgb(0, 254, 42);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: rgb(0, 0, 0);
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+<h1>{{ town_name_data }}:</h1>
+<h2>Spair NPSs: </h2>
+    <button type="button" class="collapsible">Spair NPCs</button>
+        <div class="content">
+        <table>
+            <tr>
+            <th>Name</th>
+            <th>Background</th>
+            <th>Flaw</th>
+            <th>Race</th>
+            <th>Gender</th>
+            </tr>
+        {% for spair_npc in spair_npcs%}
+        <tr>
+            <td>{{spair_npc.name}}   </td>
+            <td>{{spair_npc.background}}   </td>
+            <td>{{spair_npc.flaw}}   </td>
+            <td>{{spair_npc.race}}   </td>
+            <td>{{spair_npc.gender}}   </td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+<h2>Stores: </h2>
+
+{% for store in stores %}
+    <button type="button" class="collapsible">{{store.name}}: {{store.store_type}}</button>
+        <div class="content">
+            <h3>{{store.name}}: {{store.store_type}}</h3>
+            <h4> Owner Info</h4>
+            <table>
+                <tr>
+                <th>Name</th>
+                <th>Background</th>
+                <th>Flaw</th>
+                <th>Race</th>
+                <th>Gender</th>
+                </tr>
+            
+            <tr>
+                <td>{{store.owner.name}}   </td>
+                <td>{{store.owner.background}}   </td>
+                <td>{{store.owner.flaw}}   </td>
+                <td>{{store.owner.race}}   </td>
+                <td>{{store.owner.gender}}   </td>
+                <!-- <td></td> -->
+            </tr>
+        </table>
+        <button type="button" class="collapsible">Items</button>
+        <div class="content">
+            <table>
+                <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Rarity</th>
+                </tr>
+            {% for item in store.items %}
+            <tr>
+                <td>{{item.name}}   </td>
+                <td>{{item.price}}   </td>
+                <td>{{item.rarity}}   </td>
+            </tr>
+
+            {% endfor %}
+        </table>
+            </div>
+        </div>
+{% endfor %}
+
+
+
+spare_npc_number: {{spare_npc_number}}
+
+
+
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+    </script>
+{% endblock content %}

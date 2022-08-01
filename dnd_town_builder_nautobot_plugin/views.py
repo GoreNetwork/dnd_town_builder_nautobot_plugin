@@ -4,6 +4,8 @@ from django.shortcuts import render
 from nautobot.core.views import generic
 from pprint import pprint
 import random
+from django.views.generic import View
+
 
 from dnd_town_builder_nautobot_plugin.models import Backgrounds, ServiceLocation, ServiceNames, CharName, StoreName, StoreItems, TownName 
 
@@ -68,10 +70,6 @@ def build_npcs(char_type):
 
     return char_data
 
-    
-
-
-
 def build_stores(store_type, how_many_stores, how_many_rares):
     store_name_queries = StoreName.objects.filter(store_type=store_type)
     store_name_data = build_name_dict(store_name_queries)
@@ -103,34 +101,47 @@ def build_stores(store_type, how_many_stores, how_many_rares):
 
         
 
-
-
-    
-
 def build_city(request):
+
+    if request.method=="POST":
+        return built_city(request)
+    if request.method=='GET':
+        return render(request, 'dnd_town_builder_nautobot_plugin/build_city.html'  )
+
+    # return render(request, 'dnd_town_builder_nautobot_plugin/build_city.html'  )
+
+
+def built_city(request):
+    print ("Build city request data****\n\n\n\n\n\n")
+    pprint (dir(request.POST))
+    pprint (request.POST)
+    combat_store_number  = int(request.POST.get('combat_store_number' ))
+    magic_store_number   = int(request.POST.get('magic_store_number'  ))
+    general_store_number = int(request.POST.get('general_store_number'))
+    combat_store_rare_items_number  = int(request.POST.get('combat_store_rare_items_number' ))
+    magic_store_rare_items_number   = int(request.POST.get('magic_store_rare_items_number'  ))
+    general_store_rare_items_number = int(request.POST.get('general_store_rare_items_number'))
+
+    spare_npc_number = int(request.POST.get('spare_npc_number'))
     city = {}
     town_name_data = TownName.objects.all()
     name_dict = build_name_dict(town_name_data)
     city['name'] = build_name(name_dict, 'city')
     city['spair_npcs']=[]
-    for each in range(0,12):
+    for each in range(0,spare_npc_number):
         city['spair_npcs'].append(build_npcs('extra_chars'))
     city['stores']=[]
-    combat_stores = build_stores(store_type = 'combat_store', how_many_stores = 1, how_many_rares=3)
+    combat_stores = build_stores(store_type = 'combat_store', how_many_stores = combat_store_number, how_many_rares=combat_store_rare_items_number)
     for each in combat_stores:
         city['stores'].append(each)
-    general_stores = build_stores(store_type = 'general_store', how_many_stores = 1, how_many_rares=3)
+    general_stores = build_stores(store_type = 'general_store', how_many_stores = general_store_number, how_many_rares=general_store_rare_items_number)
     for each in general_stores:
         city['stores'].append(each)
-    magic_stores = build_stores(store_type = 'magic_store', how_many_stores = 1, how_many_rares=3)
+    magic_stores = build_stores(store_type = 'magic_store', how_many_stores = magic_store_number, how_many_rares=magic_store_rare_items_number)
     for each in magic_stores:
         city['stores'].append(each)
-    pprint (city)
-    
-    
         
-    return render(request, 'dnd_town_builder_nautobot_plugin/build_city.html', {
+    return render(request, 'dnd_town_builder_nautobot_plugin/built_city.html', {
         'town_name_data':city['name'],
         'spair_npcs': city['spair_npcs'],
-        'stores': city['stores'],
-        })
+        'stores': city['stores']})
